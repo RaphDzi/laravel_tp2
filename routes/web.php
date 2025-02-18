@@ -25,3 +25,9 @@ Route::get('/vinyles/{id}', function($id){
 
     return view('vinyle', ['vinyle' => $vinyle]);
 });
+
+
+//erreur 404 pour touts les autres pages
+Route::get('/*' ,function(){
+    return view('404');
+});
