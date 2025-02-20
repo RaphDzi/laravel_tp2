@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\User;
+use App\Models\Vinyl;
 
 return new class extends Migration
 {
@@ -14,8 +16,8 @@ return new class extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->string('content');
-            $table->foreignId(App\Models\User::class, 'user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId(App\Models\Vinyl::class, 'vinyl_id')->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(App\Models\User::class, 'user_id')->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(App\Models\Vinyl::class, 'vinyl_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

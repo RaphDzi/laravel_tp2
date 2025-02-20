@@ -1,10 +1,10 @@
 <?php
 
-use App\Models\Vinyle;
+use App\Models\Vinyl;
 use Illuminate\Support\Facades\Route;
 
 route::get('/', function() {
-    $vinyles = Vinyle::allVinyles();
+    $vinyles = Vinyl::allVinyles();
     dd($vinyles);
     //dd($vinyles[0]); cible uniquement la 1ere entitée
 });
@@ -15,7 +15,7 @@ Route::get('/home', function () {
 
 //affiche tous les vinyles
 Route::get('/vinyles', function () {
-    return view ('vinyles', [ 'vinyles' => Vinyle::allVinyles()]);
+    return view ('vinyles', [ 'vinyles' => Vinyl::allVinyles()]);
 });
 
 Route::get('/contact', function () {
@@ -25,8 +25,8 @@ Route::get('/contact', function () {
 
 //affichage de la page de détail de chaque vinyle
 Route::get('/vinyles/{id}', function($id){
-    $vinyles = Vinyle::allVinyles();
-    $vinyle = Vinyle::find($id);
+    $vinyles = Vinyl::allVinyles();
+    $vinyle = Vinyl::find($id);
 
     return view('vinyle', ['vinyle' => $vinyle]);
 });

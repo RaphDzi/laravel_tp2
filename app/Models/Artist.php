@@ -4,20 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Artist;
 
-class Vinyl extends Model
+class Artist extends Model
 {
+    /** @use HasFactory<\Database\Factories\ArtistFactory> */
     use HasFactory;
 
-    protected $fillable = [
-        'title',
-        'release_year',
-        'label',
-        'artist_id',
-        'description',
-    ];
-    // un vinyle peut avoir plusieurs commentaires
+    public function vinyls()
+    {
+        return $this->belongsToMany(Vinyl::class);
+    }
+    // un artiste peut avoir plusieurs commentaires
     public function comments()
     {
         return $this->hasMany(Comment::class);
