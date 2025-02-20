@@ -10,9 +10,10 @@ class Artist extends Model
     /** @use HasFactory<\Database\Factories\ArtistFactory> */
     use HasFactory;
 
+    // un artiste peut avoir plusieurs vinyles
     public function vinyls()
     {
-        return $this->belongsToMany(Vinyl::class);
+        return $this->hasMany(Vinyl::class);
     }
     // un artiste peut avoir plusieurs commentaires
     public function comments()

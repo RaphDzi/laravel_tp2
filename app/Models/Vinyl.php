@@ -22,4 +22,9 @@ class Vinyl extends Model
     {
         return $this->hasMany(Comment::class);
     }
+    // un vinyles appartient à un seul artiste
+    public function artists()
+    {
+        return $this->belongsTo(Artist::class);
+    }
 }

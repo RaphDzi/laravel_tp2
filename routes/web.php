@@ -1,38 +1,34 @@
 <?php
 
-use App\Models\Vinyl;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\VinylController;
 
-route::get('/', function() {
-    $vinyles = Vinyl::allVinyles();
-    dd($vinyles);
-    //dd($vinyles[0]); cible uniquement la 1ere entitée
-});
-
-Route::get('/home', function () {
-    return view('home');
-});
-
-//affiche tous les vinyles
-Route::get('/vinyles', function () {
-    return view ('vinyles', [ 'vinyles' => Vinyl::allVinyles()]);
-});
-
-Route::get('/contact', function () {
-    return view('contact');
-});
+//par défaut
+Route::view('/home', 'welcome');
 
 
-//affichage de la page de détail de chaque vinyle
-Route::get('/vinyles/{id}', function($id){
-    $vinyles = Vinyl::allVinyles();
-    $vinyle = Vinyl::find($id);
-
-    return view('vinyle', ['vinyle' => $vinyle]);
-});
-
+Route::view('/contact', 'contact');
 
 //erreur 404 pour touts les autres pages
-Route::get('/*' ,function(){
-    return view('404');
-});
+Route::view('/*' , '404');
+
+//vinyl all
+//Route::controller(VinylController::class)->group(function() {
+//    Route::get('/vinyls', 'index');
+//    //montre un vinyle
+//    Route::get('/vinyls', 'show');
+//    //crée
+//    Route::get('/vinyls', 'create');
+//    //store
+//    Route::get('/vinyls', 'store');
+//    //edit
+//    Route::get('/vinyls', 'edit');
+//    //update
+//    Route::get('/vinyls', 'update');
+//    //destroy
+//    Route::get('/vinyls', 'destroy');
+//});
+
+
+//optimisation en une seule ligne
+Route::ressource('vinyls', VinylController::class);
